@@ -1,0 +1,20 @@
+USE [Cadastro]
+GO
+
+/****** Object:  Table [dbo].[Usuario]    Script Date: 31/01/2024 15:40:55 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Usuario](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Nome] [nvarchar](500) NULL,
+	[DataNascimento] [datetime] NULL,
+	[ValorRenda] [decimal](18, 0) NULL,
+	[CPF] [bigint] NULL
+) ON [PRIMARY]
+GO
+
+
