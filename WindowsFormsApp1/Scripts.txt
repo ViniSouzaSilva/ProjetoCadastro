@@ -1,0 +1,65 @@
+
+
+
+Create Procedure [dbo].[S_InserirUsuario_E]
+@Nome Varchar(500)
+,@DataNascimento DateTime 
+,@ValorRenda Decimal(18,0)
+,@CPF BIGINT
+AS
+BEGIN 
+
+Insert Into Usuario
+Select 
+@Nome 
+,@DataNascimento 
+,@ValorRenda 
+,@CPF 
+
+END
+
+
+
+Create or alter Procedure [S_ListarUsuario_L]
+@ID int = 0
+,@Texto Varchar(500) = ''
+AS
+BEGIN 
+
+
+Select 
+Id
+,Nome
+,DataNascimento
+,ValorRenda
+,CPF
+From Cadastro..Usuario U (NOLOCK)
+Where (@ID = 0 OR U.Id =  @Id)
+AND (@Texto = '' or U.Nome LIKE '%' + @Texto + '%')
+
+END
+
+Create Procedure [S_DeletarUsuario_E]
+@ID int = 0
+AS
+BEGIN 
+
+Delete from Cadastro..Usuario where Id = @id
+
+
+END
+
+
+Create Procedure [S_AtualizarUsuario_E]
+@Id BIGINT
+,@Nome Varchar(500)
+,@DataNascimento DateTime 
+,@ValorRenda Decimal(18,0)
+,@CPF BIGINT
+AS
+BEGIN 
+
+Update Usuario Set Nome = @Nome,DataNascimento = @DataNascimento, ValorRenda= @ValorRenda, CPF = @CPF
+where Id = @Id
+
+END
